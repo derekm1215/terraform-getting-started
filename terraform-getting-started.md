@@ -358,7 +358,7 @@ Do you really want to destroy all resources?
 
   Enter a value: yes
   ```
-After confirmation, Terraform destroys the resources and clear the resources from the state. 
+After confirmation, Terraform destroys the resources and clears the resources from the state. 
 ```
 docker_container.nginx: Destroying... [id=5ab0f6b62f27e179372b1eed362e63a9dc1db3eddae0122cf0eac30daf2dce20]
 docker_container.nginx: Destruction complete after 0s
@@ -373,7 +373,7 @@ Use the `terraform state list` command to ensure Terraform deleted the resources
 ```shell
 $ terraform state list
 ```
-The command should return nothing, and the `terraform.tfstate` file is now empty.
+The command should return nothing; the `terraform.tfstate` file is now empty.
 
 ## Next Steps
 
