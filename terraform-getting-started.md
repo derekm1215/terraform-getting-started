@@ -3,7 +3,7 @@
 Terraform is the most popular language for defining and provisioning infrastructure as code (IaC). In this tutorial, you will learn how to deploy Docker infrastructure using Terraform.
 
 ## Learning Objectives
-___
+
 - Install Terraform.
 - Create a Terraform configuration file.
 - Follow the Terraform Init, Plan, and Apply workflow to deploy a Docker image and container. 
@@ -11,17 +11,15 @@ ___
 - Destroy the infrastructure using Terraform. 
 
 ## Prerequisites
-___
+
 - A local computer or virtual machine
 - [Docker](https://docs.docker.com/engine/install/) installed 
 
 ## Install Terraform 
-___
 
 Visit [downloads](https://www.terraform.io/downloads.html), choose your operating system, architecture, and preferred installation method, and follow the instructions to install to your system. 
 
 ## Create Terraform code
-___
 
 Create a new directory on your machine and change into that directory. 
 
@@ -80,7 +78,6 @@ resource "docker_container" "nginx" {
 }
 ```
 ## Initialize the Working Directory
-___
 
 Initialize Terraform with the [`init`](https://developer.hashicorp.com/terraform/cli/commands/init) command. The initialization process will install the plugin for the Docker provider. 
 
@@ -211,7 +208,6 @@ docker_container.nginx: Creation complete after 2s [id=bf6f2f4e5630232dee209d1c8
 Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 ```
 ## Inspect the State
-___
 
 Verify the image and the container exist by querying the Terraform [state](https://developer.hashicorp.com/terraform/language/state). use the [`terraform state list`](https://developer.hashicorp.com/terraform/cli/commands/state/list) command to list the items in the Terraform state.
 
@@ -225,7 +221,6 @@ docker_image.nginx
 When you use a [local backend](https://developer.hashicorp.com/terraform/language/settings/backends/local), the state information is stored in the `terraform.tfstate` file. Open the `terraform.tfstate` file to see its contents. We do not advise editing the state directly except in rare circumstances. We always recommend using the Terraform CLI for any [state manipulation](https://developer.hashicorp.com/terraform/cli/state). 
 
 ## Verify the Container is Accessible
-___
 
 Confirm the container is accessible on port 80 using the `curl` command. The default HTML used by NGINX will be displayed. 
 
@@ -381,6 +376,5 @@ $ terraform state list
 The `terraform state list` command should return nothing and the `terraform.tfstate` will be empty.
 
 ## Next Steps
-___
 
 Follow the rest of the [Docker with Terraform](https://developer.hashicorp.com/terraform/tutorials/docker-get-started) tutorial and continue your learning. 
