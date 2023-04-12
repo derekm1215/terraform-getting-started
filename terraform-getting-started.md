@@ -367,13 +367,13 @@ docker_image.nginx: Destruction complete after 0s
 
 Destroy complete! Resources: 2 destroyed.
 ```
-
-Check to ensure Terraform deleted the resources.
+## Inspect the State
+Use the `terraform state list` command to ensure Terraform deleted the resources.
 
 ```shell
 $ terraform state list
 ```
-The `terraform state list` command should return nothing and the `terraform.tfstate` will be empty.
+The command should return nothing and the `terraform.tfstate` file will be empty.
 
 ## Next Steps
 
