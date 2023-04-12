@@ -4,11 +4,11 @@ Terraform is the most popular language for defining and provisioning infrastruct
 
 ## Learning Objectives
 
-- Install Terraform.
-- Create a Terraform configuration file.
-- Follow the Terraform Init, Plan, and Apply workflow to deploy a Docker image and container. 
-- Verify the resources using Terraform CLI commands. 
-- Destroy the infrastructure using Terraform. 
+- Install Terraform
+- Create a Terraform configuration file
+- Follow the Terraform Init, Plan, and Apply workflow to deploy a Docker image and container
+- Verify the resources using Terraform CLI commands
+- Destroy the infrastructure using Terraform
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Terraform is the most popular language for defining and provisioning infrastruct
 
 ## Install Terraform 
 
-Visit [downloads](https://www.terraform.io/downloads.html), choose your operating system, architecture, and preferred installation method, and follow the instructions to install to your system. 
+Visit the [Install Terraform guide](https://www.terraform.io/downloads.html), choose your operating system, architecture, and preferred installation method, and follow the instructions to install Terraform on your system. 
 
 ## Create Terraform code
 
@@ -28,7 +28,7 @@ $ mkdir terraform-demo
 $ cd terraform-demo
 ```
 
-Next, create a file for your Terraform configuration code. Terraform executes code in any file with a `.tf` file extension. 
+Next, create a file for the Terraform configuration code. Terraform executes code in any file with a `.tf` file extension. 
 
 [MacOS/Linux](#MacOS/Linux) / [Windows](#Windows)
 
@@ -38,13 +38,13 @@ Next, create a file for your Terraform configuration code. Terraform executes co
 $ touch main.tf
 ```
 
-### Windows
+### Windows PowerShell
 
-```shell
+```powershell
 $ New-Item -Path "main.tf" -ItemType File
 ```
 
-Paste the following lines into the file. More information on the Docker Provider can be found [here](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs).
+Paste the following lines into the `main.tf` file. More information on the Docker Provider can be found [here](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs).
 
 ```hcl
 # Specify the Docker provider and version.
@@ -62,7 +62,7 @@ provider "docker" {
     host = "unix:///var/run/docker.sock"
 }
 
-# Pull the NGINX Docker image to the local machine.
+# Pull the NGINX Docker image to your machine. 
 resource "docker_image" "nginx" {
   name = "nginx:latest"
 }
@@ -79,7 +79,7 @@ resource "docker_container" "nginx" {
 ```
 ## Initialize the Working Directory
 
-Initialize Terraform with the [`init`](https://developer.hashicorp.com/terraform/cli/commands/init) command. The initialization process will install the plugin for the Docker provider. 
+Initialize Terraform with the [`init`](https://developer.hashicorp.com/terraform/cli/commands/init) command. The initialization process installs the plugin for the Docker provider and create a `.terraform.lock.hcl` file to constrain the provider version. 
 
 ```shell
 $ terraform init
@@ -109,12 +109,12 @@ should now work.
 
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.
+commands detect it and remind you to do so if necessary.
 ```
 
 ## Plan the Changes
 
-Now, run a Terraform [Plan](https://developer.hashicorp.com/terraform/cli/commands/plan). The Terraform Plan displays the proposed changes. If your code is correct, it will propose the creation of an image resource and a container resource. This does not make any changes to your infrastructure. 
+Now, run a Terraform [Plan](https://developer.hashicorp.com/terraform/cli/commands/plan). The Terraform Plan displays the proposed changes. If the code is correct, it proposes the creation of an image resource and a container resource. A Terraform plan does not make any changes to the infrastructure. 
 
 ```shell
 $ terraform plan
@@ -187,7 +187,7 @@ If everything was successful, it's time to apply these changes with the [apply](
 $ terraform apply
 ```
 
-You will see a confirmation message after Terraform runs another plan. Enter "yes" to allow Terraform to create the infrastructure. If you use automation software, such as [Terraform Cloud](https://www.hashicorp.com/products/terraform), it may be helpful to skip the confirmation by specifying `-auto-approve`. 
+A confirmation message displays after Terraform runs another plan. Enter "yes" to allow Terraform to create the infrastructure. If automation software is used, such as [Terraform Cloud](https://www.hashicorp.com/products/terraform), it may be helpful to skip the confirmation by specifying `-auto-approve`. 
 
 ```
 Do you want to perform these actions?
@@ -197,7 +197,7 @@ Do you want to perform these actions?
   Enter a value: yes
 ```
 
-Once the process is complete, you will receive an "Apply complete" message. 
+Once the process is complete, an "Apply complete!" message displays. 
 
 ```hcl
 docker_image.nginx: Creating...
@@ -218,11 +218,11 @@ $ terraform state list
 docker_container.nginx
 docker_image.nginx
 ```
-When you use a [local backend](https://developer.hashicorp.com/terraform/language/settings/backends/local), the state information is stored in the `terraform.tfstate` file. Open the `terraform.tfstate` file to see its contents. We do not advise editing the state directly except in rare circumstances. We always recommend using the Terraform CLI for any [state manipulation](https://developer.hashicorp.com/terraform/cli/state). 
+When using a [local backend](https://developer.hashicorp.com/terraform/language/settings/backends/local), the `terraform.tfstate` file stores the state information. Open the `terraform.tfstate` file to see its contents. We do not advise editing the state directly except in rare circumstances. We recommend using the Terraform CLI for any [state manipulation](https://developer.hashicorp.com/terraform/cli/state). 
 
 ## Verify the Container is Accessible
 
-Confirm the container is accessible on port 80 using the `curl` command. The default HTML used by NGINX will be displayed. 
+Confirm the container is accessible on port 80 using the `curl` command. The output displays the default HTML used by NGINX. 
 
 ```shell
 $ curl localhost
@@ -254,12 +254,12 @@ Commercial support is available at
 ```
 ## Destroy the Infrastructure
 
-Now that you have confirmed everything was successful, it's time to [destroy](https://developer.hashicorp.com/terraform/cli/commands/destroy) the infrastructure.
+Now that the infrastructure is confirmed, it's time to [destroy](https://developer.hashicorp.com/terraform/cli/commands/destroy) it.
 
 ```shell
 $ terraform destroy
 ```
-The `destroy` command will run a destroy plan. 
+The `destroy` command runs a destroy plan. 
 
 ```
 Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
@@ -349,7 +349,7 @@ Terraform will perform the following actions:
 
 Plan: 0 to add, 0 to change, 2 to destroy.
 ```
-Terraform will ask for another confirmation. Enter `yes` to confirm the destruction. 
+Terraform asks for another confirmation. Enter `yes` to confirm the destruction. 
 
 ```
 Do you really want to destroy all resources?
@@ -358,7 +358,7 @@ Do you really want to destroy all resources?
 
   Enter a value: yes
   ```
-After confirmation, Terraform will destroy the resources and clear the resources from the state. 
+After confirmation, Terraform destroys the resources and clear the resources from the state. 
 ```
 docker_container.nginx: Destroying... [id=5ab0f6b62f27e179372b1eed362e63a9dc1db3eddae0122cf0eac30daf2dce20]
 docker_container.nginx: Destruction complete after 0s
@@ -367,14 +367,15 @@ docker_image.nginx: Destruction complete after 0s
 
 Destroy complete! Resources: 2 destroyed.
 ```
-## Inspect the State
+## Verify the Destruction
 Use the `terraform state list` command to ensure Terraform deleted the resources.
 
 ```shell
 $ terraform state list
 ```
-The command should return nothing and the `terraform.tfstate` file will be empty.
+The command should return nothing, and the `terraform.tfstate` file is now empty.
 
 ## Next Steps
 
-Follow the rest of the [Docker with Terraform](https://developer.hashicorp.com/terraform/tutorials/docker-get-started) tutorial and continue your learning. 
+You have now learned the basics of deploying infrastructure with Terraform. To learn more about Terraform, including modifications, variables, outputs, and more, follow the rest of the [Docker with Terraform](https://developer.hashicorp.com/terraform/tutorials/docker-get-started) tutorial.
+
