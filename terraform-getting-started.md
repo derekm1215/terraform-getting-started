@@ -79,7 +79,7 @@ resource "docker_container" "nginx" {
 ```
 ## Initialize the Working Directory
 
-Initialize Terraform with the [`init`](https://developer.hashicorp.com/terraform/cli/commands/init) command. The initialization process installs the plugin for the Docker provider and create a `.terraform.lock.hcl` file to constrain the provider version. 
+Initialize Terraform with the [`init`](https://developer.hashicorp.com/terraform/cli/commands/init) command. The initialization process installs the plugin for the Docker provider and creates a `.terraform.lock.hcl` file to constrain the provider version. 
 
 ```shell
 $ terraform init
